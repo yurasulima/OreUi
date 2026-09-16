@@ -1,10 +1,62 @@
 # OreUI
 
-A Minecraft-style UI components library for Jetpack Compose.
+**OreUI** — це бібліотека UI-компонентів для Jetpack Compose, виконана у впізнаваному піксельному стилі (Minecraft-style). Вона надає набір готових елементів керування, які легко інтегруються в Android-застосунки, зберігаючи автентичну ігрову естетику.
 
-## Usage
+## Особливості
 
-*This is an automated export of the OreUI module from the Blink project.*
+- **Повна підтримка Jetpack Compose**: Побудовано на декларативному підході.
+- **Тематизація**: Власна система кольорів (наприклад, схема *Amethyst*), адаптована під Material 3.
+- **Кастомні компоненти**: Широкий вибір елементів — від кнопок до складних слайдерів та випадаючих списків.
+- **Типографіка**: Використання специфічних піксельних шрифтів для повного занурення в стиль.
 
-## License
-MIT
+## Встановлення
+
+Додайте залежність у ваш `build.gradle.kts`:
+
+```kotlin
+dependencies {
+    implementation("io.github.yurasulima:oreui:1.0.0")
+}
+```
+
+## Швидкий старт
+
+Для використання компонентів необхідно обгорнути ваш UI в `OreTheme`:
+
+```kotlin
+import io.dangerous.oreui.OreTheme
+import io.dangerous.oreui.component.OreButton
+
+@Composable
+fun MyApp() {
+    OreTheme {
+        OreButton(
+            text = "ГРАТИ",
+            onClick = { /* дія */ }
+        )
+    }
+}
+```
+
+## Основні компоненти
+
+Бібліотека включає наступні елементи:
+
+- **OreButton**: Кнопки з різними варіантами (Primary, Gray, Danger).
+- **OreTextField**: Поля вводу з характерними рамками.
+- **OreSlider**: Слайдери з підтримкою кроків та безперервної шкали.
+- **OreDropdown**: Випадаючі списки для вибору параметрів.
+- **OreSwitch & OreCheckbox**: Елементи перемикання станів.
+- **OreCard**: Контейнери зі зниженою або піднятою поверхнею.
+- **OreScreen**: Базовий макет екрана з заголовком та кнопкою назад.
+
+## Структура теми
+
+Тема `OreTheme` дозволяє налаштовувати:
+- `OreColors`: Палітра кольорів (Confirm, Danger, Border, Surface Sunken).
+- `OreTypography`: Набір шрифтів Minecraft Ten та Minecraft Seven.
+- `OreShapes`: Специфічні прямокутні форми з фіксованими рамками.
+
+## Ліцензія
+
+Проект розповсюджується під ліцензією **MIT**. Детальніше дивіться у файлі [LICENSE](LICENSE).
