@@ -11,9 +11,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import io.dangerous.oreui.LocalOreColors
 import io.dangerous.oreui.OreDimens
+import io.dangerous.oreui.component.HeaderTab
 import io.dangerous.oreui.component.OreHeader
 
 @Composable
@@ -21,6 +21,7 @@ public fun OreScreen(
     title: String,
     modifier: Modifier = Modifier,
     onBack: (() -> Unit)? = null,
+    headerTabs: List<HeaderTab> = emptyList(),
     content: @Composable ColumnScope.() -> Unit
 ) {
     val colors = LocalOreColors.current
@@ -28,17 +29,17 @@ public fun OreScreen(
         modifier = modifier
             .fillMaxSize()
             .background(colors.background)
-            .padding(16.dp)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(colors.background)
-                .border(OreDimens.BorderWidth, colors.border)
+                .border(OreDimens.BorderWidth, colors.outline)
         ) {
             OreHeader(
                 title = title,
-                onBack = onBack
+                onBack = onBack,
+                tabs = headerTabs
             )
 
             Column(
