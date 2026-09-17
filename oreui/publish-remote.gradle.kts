@@ -6,20 +6,12 @@ plugins {
 val ossrhUsername = project.properties["ossrhUsername"]?.toString() ?: System.getenv("OSSRH_USERNAME")
 val ossrhPassword = project.properties["ossrhPassword"]?.toString() ?: System.getenv("OSSRH_PASSWORD")
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = "io.github.yurasulima"
-            artifactId = "oreui"
-            version = "1.0.0"
-
-            afterEvaluate {
-                from(components["release"])
-            }
-
+afterEvaluate {
+    publishing {
+        publications.withType<MavenPublication> {
             pom {
                 name.set("OreUI")
-                description.set("A Minecraft-style UI components library for Jetpack Compose")
+                description.set("A Minecraft-style UI components library for Compose Multiplatform")
                 url.set("https://github.com/yurasulima/OreUi")
                 licenses {
                     license {
@@ -31,7 +23,6 @@ publishing {
                     developer {
                         id.set("yurasulima")
                         name.set("Yura Sulima")
-                        email.set("yura@example.com") // Replace with actual email if desired
                     }
                 }
                 scm {
@@ -41,20 +32,21 @@ publishing {
                 }
             }
         }
-    }
-    repositories {
-        maven {
-            name = "OSSRH"
-            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-            credentials {
-                username = ossrhUsername
-                password = ossrhPassword
+
+        repositories {
+            maven {
+                name = "OSSRH"
+                url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+                credentials {
+                    username = ossrhUsername
+                    password = ossrhPassword
+                }
             }
         }
     }
-}
 
-signing {
-    useGpgCmd()
-    sign(publishing.publications["maven"])
+    signing {
+        useGpgCmd()
+        sign(publishing.publications)
+    }
 }
